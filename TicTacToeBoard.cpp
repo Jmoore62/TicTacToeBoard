@@ -19,7 +19,12 @@ TicTacToeBoard::TicTacToeBoard()
 **/
 Piece TicTacToeBoard::toggleTurn()
 {
-  return Invalid;
+  if (turn == X){
+    turn = O;
+  }else{
+    turn = X;
+  }
+  return turn;
 }
 
 /**
@@ -33,7 +38,19 @@ Piece TicTacToeBoard::toggleTurn()
 **/ 
 Piece TicTacToeBoard::placePiece(int row, int column)
 {
-  return Invalid;
+  
+  if (row < 0 || row > 2 || column < 0 || column > 2){
+    return Invalid;
+  }
+  
+  if(board[row][column] != Blank){
+    return board[row][column];
+  }
+  
+  board[row][column] = turn;
+  this->toggleTurn();
+  return board[row][column];
+  
 }
 
 /**
@@ -42,7 +59,11 @@ Piece TicTacToeBoard::placePiece(int row, int column)
 **/
 Piece TicTacToeBoard::getPiece(int row, int column)
 {
-  return Invalid;
+  if (row < 0 || row > 2 || column < 0 || column > 2){
+    return Invalid;
+  }
+   
+  return board[row][column];
 }
 
 /**
@@ -51,5 +72,45 @@ Piece TicTacToeBoard::getPiece(int row, int column)
 **/
 Piece TicTacToeBoard::getWinner()
 {
-  return Invalid;
+  if(board[0][0] == board[0][1] && board[0][0] == board[0][2] && board[0][0] != Blank){
+    return board[0][0];
+  }
+  
+  if(board[1][0] == board[1][1] && board[1][0] == board[1][2] && board[1][0] != Blank){
+    return board[1][0];
+  }
+  
+  if(board[2][0] == board[2][1] && board[2][0] == board[2][2] && board[2][0] != Blank){
+    return board[2][0];
+  }
+  
+  if(board[0][0] == board[1][0] && board[0][0] == board[2][0] && board[0][0] != Blank){
+    return board[0][0];
+  }
+  
+  if(board[0][1] == board[1][1] && board[0][1] == board[2][1] && board[0][1] != Blank){
+    return board[0][1];
+  }
+  
+  if(board[0][2] == board[1][2] && board[0][2] == board[2][2] && board[0][2] != Blank){
+    return board[0][2];
+  }
+  
+  if(board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != Blank){
+    return board[0][0];
+  }
+  
+  if(board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] != Blank){
+    return board[0][2];
+  }
+  
+  for(int i = 0; i<3; i++){
+    for(int j=0; j<3; j++){
+      if (board[i][j] == Blank){
+        return Invalid;
+      }
+    }
+  }
+  
+  return Blank;
 }
