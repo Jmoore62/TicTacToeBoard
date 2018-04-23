@@ -157,11 +157,11 @@ TEST(TicTacToeBoardTest, getWinnerCol1)
 TEST(TicTacToeBoardTest, getWinnerCol2)
 {
 	TicTacToeBoard obj;
-	obj.placePiece(1,0);
 	obj.placePiece(0,1);
+	obj.placePiece(0,0);
 	obj.placePiece(1,1);
 	obj.placePiece(0,2);
-	obj.placePiece(1,2);
+	obj.placePiece(2,1);
 	ASSERT_TRUE(obj.getWinner() == 'X');
 	
 }
@@ -169,10 +169,10 @@ TEST(TicTacToeBoardTest, getWinnerCol2)
 TEST(TicTacToeBoardTest, getWinnerCol3)
 {
 	TicTacToeBoard obj;
-	obj.placePiece(2,0);
-	obj.placePiece(0,1);
-	obj.placePiece(2,1);
 	obj.placePiece(0,2);
+	obj.placePiece(0,1);
+	obj.placePiece(1,2);
+	obj.placePiece(0,0);
 	obj.placePiece(2,2);
 	ASSERT_TRUE(obj.getWinner() == 'X');
 	
