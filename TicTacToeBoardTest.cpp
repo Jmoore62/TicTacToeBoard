@@ -49,6 +49,8 @@ TEST(TicTacToeBoardTest, placePiece)
 	ASSERT_TRUE(obj.placePiece(0,1) == 'O');
 	ASSERT_TRUE(obj.placePiece(0,2) == 'X');
 	ASSERT_TRUE(obj.placePiece(0,0) == 'X');
+	ASSERT_TRUE(obj.placePiece(1,12) == '?');
+	
 	
 }
 
@@ -62,6 +64,12 @@ TEST(TicTacToeBoardTest, getPiece)
 	ASSERT_TRUE(obj.getPiece(3,2) == '?');
 	ASSERT_TRUE(obj.getPiece(1,-6) == '?');
 	ASSERT_TRUE(obj.getPiece(-1,12) == '?');
+	ASSERT_TRUE(obj.getPiece(1,12) == '?');
+	ASSERT_TRUE(obj.getPiece(1,2) == ' ');
+	ASSERT_TRUE(obj.getPiece(1,1) == ' ');
+	ASSERT_TRUE(obj.getPiece(1,10) == '?');
+	ASSERT_TRUE(obj.getPiece(1,0) == ' ');
+	
 	
 }
 
@@ -188,5 +196,16 @@ TEST(TicTacToeBoardTest, getWinnerO)
 	obj.placePiece(2,2);
 	obj.placePiece(1,2);
 	ASSERT_TRUE(obj.getWinner() == 'O');
+	
+}
+
+TEST(TicTacToeBoardTest, getWinnerBranch0)
+{
+	TicTacToeBoard obj;
+	obj.placePiece(0,2);
+	obj.placePiece(0,1);
+	obj.placePiece(1,1);
+	obj.placePiece(1,0);
+	ASSERT_TRUE(obj.getWinner() == '?');
 	
 }
